@@ -3,6 +3,7 @@ const singupBtn = document.getElementById('singup-btn');
 const loginBtn = document.getElementById('login-return');
 const singupName = document.getElementById('singup-name');
 const singupEmail = document.getElementById('singup-account');
+const userName = document.getElementById('username');
 //密碼確認
 const password = document.getElementById('singup-pwd');
 const passworda = document.getElementById('singupa-pwd');
@@ -123,12 +124,24 @@ const inputText = document.getElementById('inputText');//getElementById
 const addBTN = document.getElementById('addBTN');
 let todoData = [];//空陣列
 
-//0使用者名稱
-const userName = document.getElementById('username');
-let strName = localStorage.setItem("nickname",'')
-userName.innerHTML = strName
+//使用者名稱
+function userDisplay(){
+let url = `https://todoo.5xcamp.us/users/sign_in`;
+let APIData = {
+    "user": {
+        "nickname": nickName
+    }
+}
+axios.post(url,APIData)
+     .then((res)=>{
+        //console.log(res)
+        let nickName = res.data.nickname;
+        userName.innerHTML = nickName
+     })
+     .catch(error=>console.log(error.response))
 
 
+}
 
 
 
