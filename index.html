@@ -5,64 +5,84 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-
-
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fontawesome-free-6.2.0-web/css/all.min.css">
+    <link href="fontawesome-free-6.3.0-web/css/brands.min.css" rel="stylesheet">
+    <link href="fontawesome-free-6.3.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+
+
 </head>
 <body>
-  <div class="wrap">
-    <div class="home">
-    <h2><a href="#">Best Todo List</a></h2>
-    <img src="img/check-list.png" alt="listpng">
+    <div class="indexwarp">
+      <div class="home">
+      <h1><a href="#">Best Todo List</a></h1>
+<!-- 登入 -->
+      
+      <div class="login" id="login" style="display: none">
+        
+        <h2>開始使用最實用的線上待辦事項服務</h2>
+        <form class="content">
+        <label for="account">Email</label>
+        <input type="email" id="login-account" placeholder="請輸入有效的Email" required>
+        <br>
+        <label for="password">密碼</label>
+        <input type="password" id="login-pwd" placeholder="請輸入密碼" title="密碼不得少於6個字元">
+        <br> 
+        <div id="btn">
+        <input type="button" id="login-send" value="登入">
+        <br>
+        <input type="button" id="singup-send" value="註冊">
+        </div>
+        </form>
+      </div>
+
+<!-- 註冊 -->
+      <div class="singup" id="singup" style="display: none">
+      <h2>即將成為時間管理大師</h2>  
+      <form class="content">
+        <label for="singup-name">您的稱呼</label>
+        <input type="text" id="singup-name" placeholder="請輸入您的稱呼" title="中英皆可">
+        <br>
+        <label for="account">Email</label>
+        <input type="email" id="singup-account" placeholder="請輸入有效的Email" required>
+        <br>
+        <label for="password">密碼</label>
+        <input type="password" id="singup-pwd" placeholder="請輸入密碼" title="密碼不得少於6個字元">
+        <br>
+        <label for="password">再次輸入密碼</label>
+        <input type="password" id="singupa-pwd" placeholder="請再次輸入密碼">
+        <br>
+        <div id="btn">
+        <input type="button" id="singup-btn" value="註冊">
+        <br>
+        <input type="button" id="login-return" value="返回登入">
+        </div>
+      </form>
+      </div> 
+    </div> 
     </div>
-  <div class="login">
-  <h2>成為時間管理大師</h2>  
-  <form class="content">
-    <label for="login-name">您的稱呼</label>
-    <input type="text" id="login-name" placeholder="請輸入您的稱呼" title="中英皆可">
-    <br>
-    <label for="account">Email</label>
-    <input type="email" id="login-account" placeholder="請輸入有效的Email" required>
-    <br>
-    <label for="password">密碼</label>
-    <input type="password" id="login-pwd" placeholder="請輸入密碼" title="密碼不得少於6個字元">
-    <br>
-    <div id="btn">
-    <input type="button" id="sign-send" value="註冊">
-    <br>
-    <input type="button" id="login-send" value="登入">
-    </div>
-  </form>
-  </div>
-</div>
-    <!-- <div class="container">
+
+
+<!-- todolist -->
+    <div class="container" id="container" style="display: block">
         <h1>TODO LIST</h1>
         <div class="card input">
-          <input type="text" placeholder="請輸入待辦事項" />
-          <a href="#" class="btn_add">+</a>
+          <input type="text" placeholder="請輸入待辦事項" id="inputText"/>
+          <a href="#" class="btn_add" id="addBTN">+</a>
         </div>
         <div class="card card_list">
-          <ul class="tab">
-            <li class="active">全部</li>
-            <li>待完成</li>
-            <li>已完成</li>
+          <ul class="tab" id="tab">
+            <li class="active" data-tab="all">全部</li>
+            <li data-tab="work">待完成</li>
+            <li data-tab="over">已完成</li>
           </ul>
           <div class="cart_content">
-            <ul class="list">
-              <li>
+            <ul class="list" id="todoList">
+              <!-- <li>
                 <label class="checkbox" for="">
                   <input type="checkbox" />
                   <span>把冰箱發霉的檸檬拿去丟</span>
@@ -89,21 +109,26 @@
                   <span>把冰箱發霉的檸檬拿去丟</span>
                 </label>
                 <a href="#" class="delete"></a>
-              </li>
+              </li> -->
             </ul>
             <div class="list_footer">
-              <p>5 個待完成項目</p>
-              <a href="#">清除已完成項目</a>
+              <p><span id="workNum">0</span>個待完成項目</p>
+              <a href="#" id="deleteBTN">清除已完成項目</a>
             </div>
           </div>
         </div>
-      </div>
+        <div class="username">
+          <h2 id="username"></h2>
+        </div>
+        <div class="logoutBtn">
+          <input type="button" id="logout" value="登出">
+        </div>
+      </div>    
 
 
 
 
- -->
-     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-    <script src="js/all.js"></script>
+
+<script src="js/all.js"></script>
 </body>
 </html>
