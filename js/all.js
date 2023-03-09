@@ -1,7 +1,7 @@
 //註冊相關
 const singupBtn = document.getElementById('singup-btn');
 const loginBtn = document.getElementById('login-return');
-const singupName = document.getElementById('singup-name');
+const singupName = document.getElementById('singup-name').value;
 const singupEmail = document.getElementById('singup-account');
 
 //密碼確認
@@ -32,6 +32,12 @@ loginBtn.addEventListener('click',function(e){
 singupBtn.addEventListener('click',function(e){
     callSingUp();
 });
+passworda.addEventListener('keypress',function(e){
+    if(e.key =="Enter"){
+        CallLoginUp();
+        e.preventDefault;
+    }
+})
 
 function callSingUp(){
     axios.defaults.headers.common['Authorization'] = "";
@@ -39,7 +45,11 @@ function callSingUp(){
     alert("欄位不可空白")
     return;
     }else if(password.value != passworda.value){
-    alert("兩者密碼不一，請再確認一次")
+        Swal.fire({
+            icon: 'error',
+            title: '註冊失敗',
+            text: '兩者密碼不一，請重新輸入',
+          })
     return;
     }
     
@@ -59,14 +69,22 @@ function callSingUp(){
     })
     .then(function(response){
         if(response.data.message=="註冊成功"){
-            alert("恭喜帳號註冊成功!即將前往登入頁面")
+            Swal.fire({
+                icon: 'success',
+                title: '註冊成功 !',
+                text: '請重新登入',
+              }) 
             login.style = "display:block"
             singup.style = "display:none"
         }
     })
     .catch(function (error){
         if(error.response.data.message=="註冊發生錯誤"){
-            alert("此帳號已被使用，請重新登入");
+            Swal.fire({
+                icon: 'error',
+                title: '註冊失敗',
+                text: '此帳號已被使用，請重新輸入',
+              })
         }
     })
 }
@@ -75,6 +93,14 @@ loginSend.addEventListener('click',function(e){
     CallLoginUp();
     e.preventDefault;
 });
+loginPWD.addEventListener('keypress',function(e){
+    if(e.key =="Enter"){
+        CallLoginUp();
+        e.preventDefault;
+    }
+});
+
+
 function CallLoginUp(){
     
     let obj ={}
@@ -82,8 +108,6 @@ function CallLoginUp(){
     obj.PWD = loginPWD.value;
     console.log(obj);
     
-
-
     axios.post(`https://todoo.5xcamp.us/users/sign_in`,{
         "user": {
           "email": obj.email,
@@ -99,24 +123,30 @@ function CallLoginUp(){
         // console.log(response.statusText);
         // console.log(response.headers);
         // console.log(response.config);
+      
         if(axios.defaults.headers.common['Authorization'] = response.headers.authorization){
-        alert("登入成功!")
-            
-        login.style = "display:none"
-        container.style = "display:block"
-            
-      }
-        
-         let ary = response.data;
+            Swal.fire({
+                icon: 'success',
+                title: '登入成功 !',
+                text: '前往todolist',
+              })  
+        }
+            login.style = "display:none"
+            container.style = "display:block"
+
+            let ary = response.data;
             console.log(ary.nickname);
             const userName = document.querySelector('.nickname')
-            userName.innerHTML = "smallp";
+            userName.innerHTML = `歡迎回來${ary.nickname}`;
     })
     .catch(function(error){
-        alert("帳號密碼錯誤，請確認是否有註冊或再試一次")
+        Swal.fire({
+            icon: 'error',
+            title: '登入失敗',
+            text: '請確認帳號密碼是否正確',
+          })
     })
     }
-
 
 //登出帳號
 logOut.addEventListener('click',function(e){
@@ -126,7 +156,11 @@ function CallLogout(){
     axios.delete(`https://todoo.5xcamp.us/users/sign_out`)
     .then(function(response){
         axios.defaults.headers.common['Authorization'] = "";
-        alert("登出成功!即將返回首頁");
+        Swal.fire({
+            icon: 'success',
+            title: '登出成功 !',
+            text: '感謝您的使用',
+          }) 
         container.style = "display:none"
         login.style = "display:block"
         document.getElementById("login-account").value ="";//初始化欄位
@@ -135,7 +169,11 @@ function CallLogout(){
 
         
     })
-    .catch(error=>console.log(error.response))
+    .catch(error=>Swal.fire({
+        icon: 'error',
+        title: '登出失敗',
+        text: '請再試一次',
+      }))
 }
 //todolist
 const inputText = document.getElementById('inputText');//getElementById
@@ -153,15 +191,6 @@ let todoData = [];//空陣列
 //     console.log(response.headers);
 //     console.log(response.config);
 //   });
-
-
-
-
-
-
-
-
-
 
 //1.新增
 addBTN.addEventListener('click',addTodo);
@@ -184,7 +213,6 @@ inputText.addEventListener('keypress',function(e){
         addTodo();
     }
 });
-
 
 
 //2.渲染

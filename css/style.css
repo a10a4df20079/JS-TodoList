@@ -79,11 +79,14 @@ z-index: 0;
     font-size: 30px;
     font-weight: bold;
 }
+
+/* 註冊 */
 .singup{
     position: absolute;
+    right: 110px;
     margin: auto 0;
     width: 600px;
-    background: #FFD370;
+    background-image: linear-gradient(#ffd370 90%, #ffffff 110%, #e8e8e8 120%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,6 +95,7 @@ z-index: 0;
 .singup h2{
     font-size: 30px;
     font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
     color: black;
     padding: 100px 0px 40px 0px;
 }
@@ -112,14 +116,14 @@ label{
     font-weight: bold;
 }
 
-#singup-send,#login-return{
+#singup-send,#login-return,#singup-btn{
     margin-top: 10px;
     background: none;
     padding-left: 1px;
     width: 90px;
     font-weight: bold;
 }
-#login-send{
+#login-send,#singup-btn{
     margin-top: 15px;
     background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
     border-radius: 8px;
@@ -140,7 +144,7 @@ label{
     -webkit-user-select: none;
     touch-action: manipulation;
 }
-#login-send:hover {
+#login-send,#singup-btn:hover {
     box-shadow:white 0 1px 30px;
     transition-duration: .1s;
   }
@@ -148,6 +152,11 @@ label{
   @media (min-width: 768px) {
     #sign-send {
       padding: 0 2.6rem;
+    }
+  }
+  @media (min-width: 768px) {
+    #singup-btn {
+      padding: 0 1rem;
     }
   }
 
@@ -164,12 +173,11 @@ html {
 }
 
 body {
-  border: 1px solid black;
   min-height: 100vh;
   background: #eee;
   display: flex;
   color: #333;
-  background-image: linear-gradient(174deg, #ffd370 60%, #ffd370 46%, #ffffff 46%, #ffffff 100%, #e8e8e8 100%);
+  background-image: linear-gradient(180deg, #ffd370 80%, #ffd370 40%, #ffffff 100%, #e8e8e8 100%);
   letter-spacing: 0.07em;
 }
 
@@ -177,7 +185,7 @@ h1 {
   text-align: center;
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  font-family: "Baloo Tamma 2";
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   letter-spacing: 0.5rem;
   font-weight: bold;
 }
@@ -393,10 +401,20 @@ input[type=text]::placeholder {
 .checkbox input:checked ~ span::after {
   opacity: 1;
 }
+.nickname{
+  position: absolute;
+  right: -150px;
+  top: 20px;
+  font-weight: bold;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 20px;
+
+}
+
 #logout{
     position: absolute;
     right: -300px;
-    top: 0px;
+    top: -10px;
     margin-top: 15px;
     background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
     border-radius: 8px;
