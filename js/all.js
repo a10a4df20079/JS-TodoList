@@ -1,7 +1,7 @@
 //註冊相關
 const singupBtn = document.getElementById('singup-btn');
 const loginBtn = document.getElementById('login-return');
-const singupName = document.getElementById('singup-name').value;
+const singupName = document.getElementById('singup-Nickname');
 const singupEmail = document.getElementById('singup-account');
 
 //密碼確認
@@ -117,12 +117,12 @@ function CallLoginUp(){
         }
     })
     .then(function(response){
-        // console.log(response);//新增這一段
-        // console.log(response.data);
-        // console.log(response.status);
-        // console.log(response.statusText);
-        // console.log(response.headers);
-        // console.log(response.config);
+        console.log(response);//新增這一段
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
       
         if(axios.defaults.headers.common['Authorization'] = response.headers.authorization){
             Swal.fire({
