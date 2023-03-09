@@ -3,7 +3,7 @@ const singupBtn = document.getElementById('singup-btn');
 const loginBtn = document.getElementById('login-return');
 const singupName = document.getElementById('singup-name');
 const singupEmail = document.getElementById('singup-account');
-const userName = document.getElementById('username');
+
 //密碼確認
 const password = document.getElementById('singup-pwd');
 const passworda = document.getElementById('singupa-pwd');
@@ -76,23 +76,41 @@ loginSend.addEventListener('click',function(e){
     e.preventDefault;
 });
 function CallLoginUp(){
+    
     let obj ={}
     obj.email = loginEmail.value;
     obj.PWD = loginPWD.value;
     console.log(obj);
+    
+
 
     axios.post(`https://todoo.5xcamp.us/users/sign_in`,{
         "user": {
           "email": obj.email,
+          "nickname": obj.nickName,
           "password": obj.PWD
+
         }
     })
     .then(function(response){
+        // console.log(response);//新增這一段
+        // console.log(response.data);
+        // console.log(response.status);
+        // console.log(response.statusText);
+        // console.log(response.headers);
+        // console.log(response.config);
         if(axios.defaults.headers.common['Authorization'] = response.headers.authorization){
-            alert("登入成功!")
-            login.style = "display:none"
-            container.style = "display:block"
-        }
+        alert("登入成功!")
+            
+        login.style = "display:none"
+        container.style = "display:block"
+            
+      }
+        
+         let ary = response.data;
+            console.log(ary.nickname);
+            const userName = document.querySelector('.nickname')
+            userName.innerHTML = "smallp";
     })
     .catch(function(error){
         alert("帳號密碼錯誤，請確認是否有註冊或再試一次")
@@ -125,23 +143,19 @@ const addBTN = document.getElementById('addBTN');
 let todoData = [];//空陣列
 
 //使用者名稱
-function userDisplay(){
-let url = `https://todoo.5xcamp.us/users/sign_in`;
-let APIData = {
-    "user": {
-        "nickname": nickName
-    }
-}
-axios.post(url,APIData)
-     .then((res)=>{
-        //console.log(res)
-        let nickName = res.data.nickname;
-        userName.innerHTML = nickName
-     })
-     .catch(error=>console.log(error.response))
+
+// axios.get('https://todoo.5xcamp.us/users/sign_in')
+// .then(function (response) {
+//     console.log(response);
+//     console.log(response.data);
+//     console.log(response.status);
+//     console.log(response.statusText);
+//     console.log(response.headers);
+//     console.log(response.config);
+//   });
 
 
-}
+
 
 
 
