@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/Vector.png" />
@@ -24,15 +25,16 @@
 
 </head>
 <body>
-    <div class="indexwarp">
-      <div class="home">
-      <h1><a href="#">Best Todo List</a></h1>
-<!-- 登入 -->
+  <div class="indexwarp">
+
+      <!-- 登入 -->
       
       <div class="login" id="login" style="display: block">
+        <div class="home">
+        <h1><a href="#">Best Todo List</a></h1>
         
-        <h2>開始使用最實用的線上待辦事項服務</h2>
         <form class="content">
+        <h2>實用的線上待辦服務</h2>
         <label for="account">Email</label>
         <input type="email" id="login-account" placeholder="請輸入有效的Email" required>
         <br>
@@ -45,10 +47,11 @@
         <input type="button" id="singup-send" value="註冊">
         </div>
         </form>
-      
+      </div> 
       </div>
 
-<!-- 註冊 -->
+      <!-- 註冊 -->
+      <div class="singupwarp">
       <div class="singup" id="singup" style="display: none">
       <h2>即將成為時間管理大師</h2> 
       <form class="content">
@@ -71,8 +74,8 @@
         </div>
       </form>
       </div> 
-    </div> 
     </div>
+  </div>
 
 
 <!-- todolist -->

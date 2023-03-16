@@ -52,27 +52,30 @@ width: 1028px;
 margin: 0 auto;
 }
 .home{
-position: absolute;
-margin-left: 350px;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
-width: 1028px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  z-index: 0;
+}
+@media (max-width: 576px) {
+  .home{
+    flex-direction: column;
+    align-items: stretch;
 
-z-index: 0;
+  }
 }
 .home a{
     text-decoration: none;
     color: black;
 }
 .home h1{
-    font-size: 55px;
-    left: -280px;
-    padding-bottom: 20px;
+    font-size: 35px;
+    padding: 0% 3% 0% 0%;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: bold;
-    position:absolute;
 }
 .login h2{
     padding-bottom: 30px;
@@ -81,15 +84,18 @@ z-index: 0;
 }
 
 /* 註冊 */
-.singup{
+.singupwarp{
     position: absolute;
-    right: 110px;
-    margin: auto 0;
-    width: 600px;
-    background-image: linear-gradient(#ffd370 90%, #ffffff 110%, #e8e8e8 120%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+.singup{
+    position: relative;
+    top: 50%;  
+    left: 50%;
+    transform: translate(-50%, 0%);
+    height: 100vh;
+    width: 30%;
     z-index: 2;
 }
 .singup h2{
@@ -99,10 +105,24 @@ z-index: 0;
     color: black;
     padding: 100px 0px 40px 0px;
 }
+@media (max-width: 576px) {
+  .singup {
+    min-width: 100%;
+  }
+}
 .content{
     display: flex;
     flex-direction: column;
     margin: 0px 0px 25px 0px;
+}
+@media (max-width: 576px) {
+  .content{
+    position: relative;
+    transform: translate(12%, 0%);
+    width: 80%;
+    align-items: center;
+
+  }
 }
 input{
     border-radius: 10px;
@@ -177,8 +197,9 @@ body {
   background: #eee;
   display: flex;
   color: #333;
-  background-image: linear-gradient(180deg, #ffd370 80%, #ffd370 40%, #ffffff 100%, #e8e8e8 100%);
+  background: rgb(255, 216, 132);
   letter-spacing: 0.07em;
+  background-repeat: no-repeat;
 }
 
 h1 {
@@ -189,7 +210,7 @@ h1 {
   letter-spacing: 0.5rem;
   font-weight: bold;
 }
-@media (max-width: 575px) {
+@media (max-width: 600px) {
   h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -197,16 +218,15 @@ h1 {
 }
 
 .container {
-  position: absolute;
-  margin: 50px 0px 0px 580px;
-  padding: 0 12px;
-  width: 500px;
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
   background: #FFD370;
   z-index: 0;
 }
-@media (max-width: 575px) {
+@media (max-width: 600px) {
   .container {
-    margin-top: 1.5rem;
+    width: 60%;
   }
 }
 
@@ -274,7 +294,7 @@ input[type=text]::placeholder {
 .cart_content {
   padding: 0.5rem 1rem 1rem 1rem;
 }
-@media (max-width: 575px) {
+@media (max-width: 600px) {
   .cart_content {
     padding: 0.5rem 1rem 0.5rem 0.5rem;
   }
@@ -284,7 +304,7 @@ input[type=text]::placeholder {
   position: relative;
   padding-right: 2rem;
 }
-@media (max-width: 575px) {
+@media (max-width: 600px) {
   .list li {
     padding-right: 0;
   }
@@ -304,7 +324,7 @@ input[type=text]::placeholder {
   background-image: url("https://i.imgur.com/7Q4RjFx.jpg");
   background-size: contain;
 }
-@media (max-width: 575px) {
+@media (max-width: 600px) {
   .list li a.delete {
     opacity: 1;
     width: 12px;
@@ -326,7 +346,7 @@ input[type=text]::placeholder {
   color: #9f9a91;
   text-decoration: none;
 }
-@media (max-width: 575px) {
+@media (max-width: 600px) {
   .list_footer {
     padding: 1.5rem 0 1rem 0.5rem;
   }
@@ -346,7 +366,7 @@ input[type=text]::placeholder {
   border-bottom: 1px solid #eee;
   line-height: 1.5;
 }
-@media (max-width: 575px) {
+@media (max-width: 600px) {
   .checkbox span {
     padding-right: 1rem;
   }
@@ -403,17 +423,21 @@ input[type=text]::placeholder {
 }
 .nickname{
   position: absolute;
-  right: -150px;
-  top: 20px;
+  right: 7%;
+  top: 3%;
   font-weight: bold;
   font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size: 20px;
-
+  font-size: 1.25rem;
+}
+@media (max-width: 600px){
+  .nickname{
+    display: none;
+  }
 }
 
 #logout{
     position: absolute;
-    right: -300px;
+    right: -5%;
     top: -10px;
     margin-top: 15px;
     background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
@@ -424,11 +448,11 @@ input[type=text]::placeholder {
     cursor: pointer;
     flex-shrink: 0;
     font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
     height: 3rem;
     padding: 0 1.6rem;
-    text-align: center;
+
     text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
     transition: all .5s;
     user-select: none;
@@ -439,9 +463,10 @@ input[type=text]::placeholder {
     box-shadow:white 0 1px 30px;
     transition-duration: .1s;
   }
-  
-  @media (min-width: 768px) {
-    #logout {
-      padding: 0 2.6rem;
+  @media (max-width: 600px){
+    #logout{
+      right: -30%;
+      min-width: 20%;
+
     }
   }
